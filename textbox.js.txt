@@ -1,0 +1,57 @@
+function setScroll(yScroll)
+			{
+				window.scroll(0, yScroll);
+			}
+
+			/*these entire next line of codes deal with the iframe text box talking to the parent document in order to get the right amount of letters currently inside the frame box to be displayed in the wordscounter*/
+			var wordCounter= parent.document.getElementById("wordCounter");
+			var content=bodyTextBox.innerText;
+			var characters=content.length;
+			var input_textbox_length="/750";
+      var submitButton=parent.document.getElementById("pronounce");
+      var stopButton=parent.document.getElementById("stop");
+
+			wordCounter.innerText = "h'lɛta "+characters+input_textbox_length;
+
+			bodyTextBox.onkeyup=function(event) {
+
+				if(characters> 1500/2){
+					bodyTextBox.innerText= bodyTextBox.innerText.substring(0,1500/2);
+				  }
+
+				//console.log("gokaka: "+ content.length);
+				content=bodyTextBox.innerText;
+				characters=content.length;
+
+				wordCounter.innerText = "h'lɛta "+characters+input_textbox_length;
+
+
+
+
+		   };
+
+
+      function redding(x) {
+
+
+
+            x.style.color = "red";
+          }
+
+      function blacking(x) {
+
+            x.style.color="gray";
+          }
+
+     function restart(x){
+
+      content=bodyTextBox.innerText;
+      var btn=parent.document.getElementById('restarter');
+       //console.log(x.innerText+"_btn_"+btn.innerHTML)
+
+
+      btn.value=content.substring(content.indexOf(x.innerText));
+       //console.log(content.indexOf(x.innerText));
+       btn.click();
+
+     }

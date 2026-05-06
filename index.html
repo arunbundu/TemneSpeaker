@@ -1,0 +1,194 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <link rel="canonical" href="https://itinerarium.github.io/phoneme-synthesis/" />
+  <link rel="shortcut icon" href="#" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>'sʌkhə́ mə́'βal kah h'ə́hrim </title>
+  <meta name="description" content="A browser-based tool to convert International Phonetic Alphabet (IPA) phonetic notation to speech using the meSpeak.js package.">
+
+  <style type="text/css">
+  html {
+    font-family: Helvetica, sans-serif;
+    background-color: :"gray";
+    min-width: 320px;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  div#container {
+    width: 60%;
+    line-height: 1.5;
+    margin: 0 auto;
+    padding: 1em;
+    background-color: "gray";
+  }
+
+  @media screen and (max-width: 640px) {
+    div#container {
+      width: 288px;
+    }
+  }
+
+  noscript p {
+    background-color: "gray";
+    padding: 1em;
+  }
+
+  div#tool, div#about, div#note {
+    background-color: #737373;
+    padding: 1em;
+  }
+
+  p {
+    margin-bottom: 1em;
+  }
+
+  #ipa-input {
+    width: 370px;
+	height:200px;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+
+  }
+    #highlightBox {
+
+      margin: 0 auto;
+      text-align: center;
+      vertical-align: middle;
+      line-height: 100px;
+      min-height:100px;
+      min-width:100%;
+      background-color:blue;
+      position:fixed;
+      z-index:2;
+      left:0px;
+      bottom:0px;
+      visibility:hidden;
+
+  }
+
+ .highlight {
+  background-color: yellow;
+}
+
+
+  input#pronounce, input#download-button, input#copy-link-button, input#start, input#stop, input#highlight {
+    width: 248px;
+    text-align: center;
+    display: block;
+    margin: 1em auto;
+  }
+  input#copy-link-button {
+    margin-bottom: 0;
+  }
+
+  input#highlight
+  highlight {
+  background-color: yellow;
+}
+
+
+  input#rate {
+    width: 7cm;
+  }
+  hr {
+    border: 0;
+    height: 1em;
+  }
+  h2 {
+    margin-bottom: 0.35em;
+  }
+
+ u{
+ 
+ text-decoration-style: wavy;
+  text-decoration-color: white;
+ 
+ }
+
+  </style>
+
+</head>
+
+<body style="background-color:rgb(50, 50, 50);">
+  <div style="background-color:rgb(73, 75, 73);" id="container">
+    <h1>'θoɪklahnɛ́ t́'fɔf tə'hrʌk-q</h1>
+    <div id="tool">  
+    <p style="text-align: center;"><em>'sʌkhíhə́ <abbr title="International Phonetic Alphabet">mə́'βal mʌ'hθemnɛ</abbr> kah h'rim</em></p>
+
+	<iframe id="input_textbox" src="textBox.html" width="100%" height="300" style="border:1px solid black;"></iframe>
+
+    <form onsubmit="process(); return false;">
+
+      <input  id="ipa_input" onchange="clear_download_button(); return false;" type="text" rows="11" cols="34" hidden>
+      <button  id="restarter" onClick="restart(); return false;" type="submit" rows="11" cols="34" hidden></button>
+
+	  <p id="wordCounter">0/750</p>
+      <input id="pronounce" onclick="process(); return false;" type="button" value="'fer h'ə́hrim" />
+      <input id="download-button" onclick="download(); return false;" type="button" disabled="disabled" value="'θorhə́hnɛ́ ə́ŋ'fer" />
+      <input id="copy-link-button" onclick="copy_link_button(); return false;" type="button" value="'βaʂi ə́ŋ'lomar 'hŋa ə́ŋ'reka" />
+      <input id="stop" onclick="stopper(); return false;"  type="button" rows="11" cols="34" value="'tʌmə!!!"/>
+      <input id="highlight" onclick="highlight(); return false;"  type="button"  value="'βɛnθahŕ"/>
+
+
+    </form>
+    </div>
+
+	 <div id="highlightBox">.</div>
+
+  <div class="form-group">
+      <label for="rate">rate</label>
+      <div style="" id="rate-value" class="badge badge-primary float-right">1</div>
+      <input type="range" id="rate" class="" min="0.5" max="2" value="1" step="0.1">
+  </div>
+    <hr />
+
+    <div id="about">
+      <h2>toh ma'fɔf ɛ́'sikra 'hya kə́'θemnɛ à?</h2>
+      <p>à, m̀a, ǹa, s̀a</p>
+	  <p>è, r̀e, ŋ̀e, ɪ̀e</p>
+	  <p>ì, j̀i, θ̀i, t̀i</p>
+	  <p>ò, b̀o, d̀o, ɱ̀o</p>
+	  <p>ù, l̀u, β̀u, f̀u</p>
+	  <p>ɔ̀, k̀ɔ' ẁɔ, x̀ɔ</p>
+	  <p>ɛ̀, z̀ɛ, c̀ɛ, g̀ɛ</p>
+	  <p>ʌ̀, ỳʌ, p̀ʌ, ʂ̀ʌ</p>
+	  <p>ə̀, h̀ə, ʒ̀ə, v̀ə</p>
+	  <h1>Privacy policy</h1>
+	  <p>For those of you here for the keyboard privacy policy</p>
+	  <p>I used an opensource Keyboard from <a href="https://www.fossify.org/">Fossify,</a><br> The keyboard app will only ask for permisions necessary to run a basic keyboard</p>
+    </div>
+  </div>
+  <script type="text/javascript">
+    function is_valid_input(i) {
+      return !(i.includes("<") || i.includes(">") || i.length > 200)
+    }
+
+    (function() {
+      var urlParams = new URLSearchParams(window.location.search);
+      if(urlParams.has('w')) {
+	var word = urlParams.get('w');
+	if(is_valid_input(word)) {
+          document.getElementById("ipa-input").value = word;
+  }
+
+  }
+}
+
+    )();
+  </script>
+    <script type="text/javascript" src= "meSpeak.js" ></script>
+  
+  <script type="text/javascript" src="pageIndex.js"></script>
+<script type="text/javascript" src="process.js"></script>
+
+
+</body>
+</html>
